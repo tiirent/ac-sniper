@@ -1,0 +1,23 @@
+{
+  "name": "ac-sniper",
+  "version": "1.0.0",
+  "description": "poe live search manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiirent/ac-sniper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiirent/ac-sniper/issues"
+  },
+  "homepage": "https://github.com/tiirent/ac-sniper#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
