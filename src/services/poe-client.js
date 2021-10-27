@@ -30,11 +30,10 @@ export default {
     return response.data;
   },
 
-  async getPoeWebpage() {
-    // todo: get url as param
+  async getPoeWebpage(id) {
     const response = await HTTP({
       method: "get",
-      url: "trade/search/Scourge/zJRO6DgI4",
+      url: "trade/search/Scourge/" + id,
       headers: {
         'user-agent': 'PostmanRuntime/7.28.4'
       },
@@ -42,14 +41,18 @@ export default {
     return response.data;
   },
 
-  async getQueryFromPoeTrade() {
-    const dom = new jsdom.JSDOM(await this.getPoeWebpage());
+  async getQueryFromPoeTrade(id) {
+    const dom = new jsdom.JSDOM(await this.getPoeWebpage(id));
     let script = dom.window.document.querySelector("body").querySelector("script[type='text/javascript']:last-child").textContent
 
     const START_FLAG = 't('
     const END_FLAG = '"loggedIn":false}'
 
-    let resultObj = JSON.parse(script.substring(script.indexOf(START_FLAG) + START_FLAG.length, script.indexOf(END_FLAG) + END_FLAG.length))
+    let resultObj = JSON.parse(
+      script.substring(
+        script.indexOf(START_FLAG) + START_FLAG.length,
+        script.indexOf(END_FLAG) + END_FLAG.length)
+      )
 
     return resultObj.state
   }

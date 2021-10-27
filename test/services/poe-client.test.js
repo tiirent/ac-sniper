@@ -16,7 +16,7 @@ test('can get poe webpage', async () => {
 })
 
 test('can get script string from webpage', async () => {
-  const data = await Client.getQueryFromPoeTrade();
+  const data = await Client.getQueryFromPoeTrade('zJRO6DgI4');
 
   expect(data).not.toBeNull()
   expect(data.name).toBe('Nebulis')
