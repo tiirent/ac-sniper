@@ -12,8 +12,7 @@ class GithubActionsReporter {
                 }
                 result.failureMessages.forEach((failureMessages) => {
                     const newLine = '%0A'
-                    const message = failureMessages.replace(/
-                        / g, newLine)
+                    const message = failureMessages.replace(g, newLine)
                     const captureGroup = message.match(/:([0-9]+):([0-9]+)/)
                     if (!captureGroup) {
                         console.log('Unable to extract line number from call stack')
@@ -28,5 +27,4 @@ class GithubActionsReporter {
         })
     }
 }
-
-export default GithubActionsReporter
+module.exports = GithubActionsReporter
