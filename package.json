@@ -1,0 +1,35 @@
+{
+  "name": "ac-sniper",
+  "version": "1.0.0",
+  "description": "poe live search manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiirent/ac-sniper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiirent/ac-sniper/issues"
+  },
+  "homepage": "https://github.com/tiirent/ac-sniper#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
