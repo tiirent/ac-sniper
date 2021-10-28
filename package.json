@@ -1,11 +1,16 @@
 {
   "name": "ac-sniper",
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "private": true,
   "description": "poe live search manager",
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
-    "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'"
+    "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -18,11 +23,28 @@
     "url": "https://github.com/tiirent/ac-sniper/issues"
   },
   "homepage": "https://github.com/tiirent/ac-sniper#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^27.3.1",
-    "jest": "^27.3.1"
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.2.1"
   },
   "jest": {
     "moduleDirectories": [
@@ -30,7 +52,29 @@
       "src"
     ]
   },
-  "dependencies": {
-    "axios": "^0.24.0"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "lint-staged": {
+    "*.{js,json,vue}": [
+      "prettier --write"
+    ]
   }
 }
