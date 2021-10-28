@@ -10,21 +10,23 @@ export default {
       data: {
         query: {
           status: {
-            option: "online"
+            option: "online",
           },
           name: "The Pariah",
           type: "Unset Ring",
-          stats: [{
-            type: "and",
-            filters: []
-          }]
+          stats: [
+            {
+              type: "and",
+              filters: [],
+            },
+          ],
         },
         sort: {
-          price: "asc"
-        }
+          price: "asc",
+        },
       },
       headers: {
-        'user-agent': 'PostmanRuntime/7.28.4'
+        "user-agent": "PostmanRuntime/7.28.4",
       },
     });
     return response.data;
@@ -35,7 +37,7 @@ export default {
       method: "get",
       url: "trade/search/Scourge/" + id,
       headers: {
-        'user-agent': 'PostmanRuntime/7.28.4'
+        "user-agent": "PostmanRuntime/7.28.4",
       },
     });
     return response.data;
@@ -43,17 +45,20 @@ export default {
 
   async getQueryFromPoeTrade(id) {
     const dom = new jsdom.JSDOM(await this.getPoeWebpage(id));
-    let script = dom.window.document.querySelector("body").querySelector("script[type='text/javascript']:last-child").textContent
+    let script = dom.window.document
+      .querySelector("body")
+      .querySelector("script[type='text/javascript']:last-child").textContent;
 
-    const START_FLAG = 't('
-    const END_FLAG = '"loggedIn":false}'
+    const START_FLAG = "t(";
+    const END_FLAG = '"loggedIn":false}';
 
     let resultObj = JSON.parse(
       script.substring(
         script.indexOf(START_FLAG) + START_FLAG.length,
-        script.indexOf(END_FLAG) + END_FLAG.length)
+        script.indexOf(END_FLAG) + END_FLAG.length
       )
+    );
 
-    return resultObj.state
-  }
+    return resultObj.state;
+  },
 };
