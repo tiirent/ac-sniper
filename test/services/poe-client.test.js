@@ -7,4 +7,5 @@ test('test poe response', () => {
     expect(data.total).not.toBeNull();
     expect(data.result).not.toBeNull();
   });
+  
 })
