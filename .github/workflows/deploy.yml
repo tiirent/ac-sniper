@@ -16,8 +16,9 @@ jobs:
       - run: npm run test:ci
       - name: deploying ✅
         if: ${{ success() }}
-        run: npm run deploy
-        run: echo "🎉 deployed to https://tiirent.github.io/ac-sniper/ 🎉"
+        run: |
+          npm run deploy
+          echo "🎉 deployed to https://tiirent.github.io/ac-sniper/ 🎉"
       - name: test failed 🚨
         if: ${{ failure() }}
         run: echo "🚨 failed tests -- not deploying 🚨"
