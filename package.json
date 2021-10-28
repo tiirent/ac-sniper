@@ -3,37 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "description": "poe live search manager",
-  "main": "index.js",
+  "author": "",
   "scripts": {
-    "test": "jest --verbose",
-    "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest --verbose",
+    "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tiirent/ac-sniper.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tiirent/ac-sniper/issues"
-  },
-  "homepage": "https://github.com/tiirent/ac-sniper#readme",
+  "main": "index.js",
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "roboto-fontface": "*",
+    "vue": "^3.0.0",
+    "vuetify": "^3.0.0-alpha.0",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-service": "~5.0.0-beta.3",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
@@ -44,13 +38,11 @@
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
-    "prettier": "^2.2.1"
-  },
-  "jest": {
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ]
+    "prettier": "^2.2.1",
+    "sass": "^1.38.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.4.3",
+    "vuetify-loader": "^2.0.0-alpha.0"
   },
   "eslintConfig": {
     "root": true,
@@ -72,9 +64,25 @@
     "last 2 versions",
     "not dead"
   ],
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/tiirent/ac-sniper/issues"
+  },
+  "homepage": "https://github.com/tiirent/ac-sniper#readme",
+  "keywords": [],
+  "license": "ISC",
   "lint-staged": {
     "*.{js,json,vue}": [
       "prettier --write"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiirent/ac-sniper.git"
   }
 }
