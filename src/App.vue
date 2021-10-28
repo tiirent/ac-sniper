@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import HelloWorld from './components/HelloWorld';
 
 export default {
@@ -56,5 +57,15 @@ export default {
   data: () => ({
     //
   }),
+  mounted() {
+    this.pushToFeed({test: 'test'});
+    console.log(this.$store.state.feed);
+  },
+  methods: {
+    ...mapMutations([
+      'pushItemsToFeed',
+      'pushToFeed',
+    ]),
+  }
 };
 </script>
