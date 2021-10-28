@@ -1,0 +1,23 @@
+name: deploy gh-pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: npm run test:ci
+      - name: deploying ✅
+        if: ${{ success() }}
+        run: npm run deploy
+        run: echo "🎉 deployed to https://tiirent.github.io/ac-sniper/ 🎉"
+      - name: test failed 🚨
+        if: ${{ failure() }}
+        run: echo "🚨 failed tests -- not deploying 🚨"
