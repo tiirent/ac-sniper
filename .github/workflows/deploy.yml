@@ -24,8 +24,8 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
         if: ${{ success() }}
-          run: echo "🎉 deployed to https://tiirent.github.io/ac-sniper/ 🎉"
-          
+        run: echo "🎉 deployed to https://tiirent.github.io/ac-sniper/ 🎉"
+
       - name: test failed 🚨
         if: ${{ failure() }}
         run: echo "🚨 failed tests -- not deploying 🚨"
