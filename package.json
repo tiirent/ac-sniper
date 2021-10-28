@@ -7,14 +7,17 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "test": "jest --verbose",
     "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'",
     "prepare": "husky install",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "gh-pages": "^3.2.3",
+    "jest": "^27.3.1",
     "vue": "^2.6.11",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2"
@@ -55,5 +58,11 @@
   ],
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
   }
 }
