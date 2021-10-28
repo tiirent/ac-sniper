@@ -4,7 +4,8 @@
   "description": "poe live search manager",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'"
   },
   "repository": {
     "type": "git",
