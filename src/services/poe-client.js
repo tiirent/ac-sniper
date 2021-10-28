@@ -3,28 +3,27 @@ import HTTP from "./axios-config.js";
 const jsdom = require("jsdom");
 
 export default {
-  async getItem() {
+  async getItemResultList(query) {
     const response = await HTTP({
       method: "post",
       url: "api/trade/search/Scourge",
       data: {
-        query: {
-          status: {
-            option: "online",
-          },
-          name: "The Pariah",
-          type: "Unset Ring",
-          stats: [
-            {
-              type: "and",
-              filters: [],
-            },
-          ],
-        },
+        query: query,
         sort: {
           price: "asc",
         },
       },
+      headers: {
+        "user-agent": "PostmanRuntime/7.28.4",
+      },
+    });
+    return response.data.result;
+  },
+
+  async getItemResult(resultList) {
+    const response = await HTTP({
+      method: "get",
+      url: "api/trade/fetch/" + resultList.join(","),
       headers: {
         "user-agent": "PostmanRuntime/7.28.4",
       },
@@ -43,7 +42,7 @@ export default {
     return response.data;
   },
 
-  async getQueryFromPoeTrade(id) {
+  async getQueryFromPoePage(id) {
     const dom = new jsdom.JSDOM(await this.getPoeWebpage(id));
     let script = dom.window.document
       .querySelector("body")
