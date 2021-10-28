@@ -1,5 +1,6 @@
 {
   "name": "ac-sniper",
+  "homepage": "http://tiirent.github.io/ac-sniper",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,10 +8,13 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:ci": "jest --ci --reporters='default' --reporters='./github-actions-reporter'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "gh-pages": "^3.2.3",
     "vue": "^2.6.11",
     "vuetify": "^2.4.0",
     "vuex": "^3.6.2"
