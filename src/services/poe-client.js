@@ -1,6 +1,5 @@
 import HTTP from "./axios-config.js";
-
-const jsdom = require("jsdom");
+import { parse } from "node-html-parser";
 
 export default {
   async getItemResultList(query) {
@@ -9,21 +8,18 @@ export default {
       url: "api/trade/search/Scourge",
       data: {
         query: query,
-        sort: {
-          price: "asc",
-        },
       },
       headers: {
         "user-agent": "PostmanRuntime/7.28.4",
       },
     });
-    return response.data.result;
+    return response.data;
   },
 
-  async getItemResult(resultList) {
+  async getItemResult(queryId, items) {
     const response = await HTTP({
       method: "get",
-      url: "api/trade/fetch/" + resultList.join(","),
+      url: `api/trade/fetch/${items.slice(0, 9).join(",")}?query=${queryId}`,
       headers: {
         "user-agent": "PostmanRuntime/7.28.4",
       },
@@ -42,9 +38,9 @@ export default {
     return response.data;
   },
 
-  async getQueryFromPoePage(id) {
-    const dom = new jsdom.JSDOM(await this.getPoeWebpage(id));
-    let script = dom.window.document
+  async getQueryFromPoePage(page) {
+    const dom = parse(page);
+    let script = dom
       .querySelector("body")
       .querySelector("script[type='text/javascript']:last-child").textContent;
 

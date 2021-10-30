@@ -3,7 +3,7 @@
     <toolbar />
     <v-main>
       <v-content>
-        <v-container style="max-width: 1264px;">
+        <v-container style="max-width: 1264px">
           <keep-alive :include="keepAliveComponents">
             <router-view />
           </keep-alive>
@@ -14,11 +14,12 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import Toolbar from './components/containers/Toolbar/Toolbar';
+import { mapMutations } from "vuex";
+import Toolbar from "./components/containers/Toolbar/Toolbar";
+import Manager from "./store/store-manager.js";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Toolbar,
@@ -28,14 +29,13 @@ export default {
     //
   }),
   mounted() {
-    this.pushToFeed({test: 'test'});
+    this.pushToFeed({ test: "test" });
+    this.addTrackedItem("zJRO6DgI4", "test item name");
+    Manager.checkItem("uuid");
     console.log(this.$store.state.feed);
   },
   methods: {
-    ...mapMutations([
-      'pushItemsToFeed',
-      'pushToFeed',
-    ]),
-  }
+    ...mapMutations(["pushItemsToFeed", "pushToFeed", "addTrackedItem"]),
+  },
 };
 </script>
