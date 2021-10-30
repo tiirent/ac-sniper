@@ -55,10 +55,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
->>> .v-toolbar__content {
-  z-index: 1;
-  padding-left: 16px !important;
-}
-</style>
