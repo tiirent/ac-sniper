@@ -1,17 +1,22 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
+// import { v4 as uuidv4 } from 'uuid';
 
 Vue.use(Vuex);
 
 const initState = () => {
   return {
     feed: [],
-    trackedItems: []
+    trackedItems: {},
   };
 };
 
 const store = new Vuex.Store({
   state: initState(),
+  getters: {
+    feed: (state) => state.feed,
+    trackedItems: (state) => state.trackedItems,
+  },
   mutations: {
     pushToFeed(state, item) {
       state.feed.unshift(item);
@@ -19,12 +24,14 @@ const store = new Vuex.Store({
     pushItemsToFeed(state, items) {
       state.feed.unshift(...items);
     },
-    addTrackedItemUrl(state, url) {
-      state.trackedItems.append({
+    addTrackedItem(state, url, name) {
+      //todo: put in uuidv4()
+      state.trackedItems["uuid"] = {
         url,
-        filters: undefined,
+        name,
+        query: undefined,
         itemList: undefined,
-      });
+      };
     },
   },
 });

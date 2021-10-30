@@ -4,4 +4,8 @@ const HTTP = axios.create({
   baseURL: "https://www.pathofexile.com",
 });
 
-export { HTTP as default };
+const API = axios.create({
+  baseURL: "https://ac-sniper-tiirent.vercel.app",
+});
+
+export { HTTP as default, API };

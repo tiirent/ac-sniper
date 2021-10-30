@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -38,17 +34,18 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <HelloWorld />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import HelloWorld from './components/HelloWorld';
+import { mapMutations } from "vuex";
+import HelloWorld from "./components/HelloWorld";
+import Manager from "./store/store-manager.js";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     HelloWorld,
@@ -58,14 +55,13 @@ export default {
     //
   }),
   mounted() {
-    this.pushToFeed({test: 'test'});
+    this.pushToFeed({ test: "test" });
+    this.addTrackedItem("zJRO6DgI4", "test item name");
+    Manager.checkItem("uuid");
     console.log(this.$store.state.feed);
   },
   methods: {
-    ...mapMutations([
-      'pushItemsToFeed',
-      'pushToFeed',
-    ]),
-  }
+    ...mapMutations(["pushItemsToFeed", "pushToFeed", "addTrackedItem"]),
+  },
 };
 </script>
