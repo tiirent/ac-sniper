@@ -9,8 +9,8 @@
     <v-row class="pl-2" no-gutters>
       <v-col offset="2">
         <span
-          class="text-overline grey--text text--white-70"
-          style="font-size: 0.9rem !important"
+          class="text-overline accent--text"
+          style="font-size: .9rem !important;"
         >
           AC-Sniper
         </span>

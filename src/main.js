@@ -1,11 +1,14 @@
-import Vue from "vue";
-import App from "./App.vue";
+import Vue from 'vue'
+import vuetify from './plugins/vuetify'
+import lodash from 'lodash';
 
-import vuetify from "./plugins/vuetify";
-import store from "./store";
-import router from "./router";
+import App from './App.vue'
 
-Vue.config.productionTip = false;
+import store from './store'
+import router from './router';
+
+Vue.config.productionTip = false
+Vue.prototype._ = lodash;
 
 new Vue({
   vuetify,
