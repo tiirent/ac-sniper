@@ -23,6 +23,7 @@ export const routes = [
 
 const router = new Router({
   mode: 'history',
+  base: '/ac-sniper/',
   scrollBehavior,
   routes,
 });
