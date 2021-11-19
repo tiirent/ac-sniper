@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import App from '@/App';
 import Feed from '@/components/pages/Feed/Feed';
+import TrackedItems from '@/components/pages/TrackedItems/TrackedItems';
 
 Vue.use(Router);
 
@@ -16,6 +17,11 @@ export const routes = [
         path: '/feed/',
         name: 'feed',
         component: Feed,
+      },
+      {
+        path: '/config/',
+        name: 'config',
+        component: TrackedItems,
       },
     ],
   },
