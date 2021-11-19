@@ -12,18 +12,23 @@ export const routes = [
   {
     path: "/",
     component: App,
+    redirect: '/feed',
     children: [
       {
-        path: '/feed/',
+        path: '/feed',
         name: 'feed',
         component: Feed,
       },
       {
-        path: '/config/',
-        name: 'config',
+        path: '/items',
+        name: 'item',
         component: TrackedItems,
       },
     ],
+  },
+  {
+    path: '*',
+    redirect: '/feed',
   },
 ];
 

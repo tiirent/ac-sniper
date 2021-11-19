@@ -3,7 +3,7 @@
     <v-dialog
       v-model="dialogModel"
       dark
-      overlay
+      hide-overlay
       max-width="640px"
       transition="dialog-transition"
     >

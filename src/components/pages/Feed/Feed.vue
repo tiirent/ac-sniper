@@ -12,7 +12,7 @@
               text-color="grey white-70"
               v-on="on"
             >
-              {{ currentSelection.text }}
+              {{ currentItemSelection.text }}
               <v-icon right x-small>
                 arrow_drop_down
               </v-icon>
@@ -23,7 +23,7 @@
               v-for="item in options"
               :key="item.key"
               @click="
-                currentSelection = item;
+                currentSelection = item.key;
               "
             >
               <v-list-item-title>{{ item.text }}</v-list-item-title>
@@ -107,52 +107,14 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 const ALL_ITEM_KEY = 'all';
 
 export default {
   name: 'Feed',
   data() {
-    // TODO: replace with real list
-    const options = [
-      {
-        text: 'All items',
-        key: 'all',
-      },
-      {
-        text: 'Kaom\'s Heart',
-        key: 'f7sjlw8dllwe',
-      },
-      {
-        text: 'Replica Atziri\'s Foible',
-        key: 'f7sjlw8sddfslwe',
-      },
-    ];
     return {
-      currentSelection: options[0],
-      options,
-      items: [
-        {
-          name: 'Kaom\'s Heart',
-          itemId: 'f7sjlw8dllwe',
-          listingId: 'e2efdd9f0we2',
-          price: '5 chaos orb',
-          message: '@XhaosHunter Hi, I would like to buy your Kaom\'s Heart Glorious Plate listed for 5 chaos in Scourge (stash tab "4"; position: left 11, top 8)',
-        },
-        {
-          name: 'Kaom\'s Heart',
-          itemId: 'f7sjlw8dllwe',
-          listingId: 'ghssd9f0we2',
-          price: '5 chaos orb',
-          message: '@photoism 안녕하세요, 스컬지(보관함 탭 "~price 5 chaos", 위치: 왼쪽 3, 상단 9)에 5 chaos(으)로 올려놓은 카옴의 심장(Kaom\'s Heart) 영광의 판금 갑옷(을)를 구매하고 싶습니다',
-        },
-        {
-          name: 'Replica Atziri\'s Foible',
-          itemId: 'f7sjlw8sddfslwe',
-          listingId: 'lfdirw9f0we2',
-          price: '20 chaos orb',
-          message: '@dongho Hi, I would like to buy your Replica Atziri\'s Foible Paua Amulet listed for 20 chaos in Scourge (stash tab "hang ton kho"; position: left 10, top 4)',
-        },
-      ],
+      currentSelection: ALL_ITEM_KEY,
       liveSearchSwitch: true,
       snackbar: false,
       snackbarTimeout: 1000,
@@ -160,23 +122,47 @@ export default {
     };
   },
   computed: {
+    ...mapGetters([
+      'feed',
+      'trackedItems',
+    ]),
     feedItems() {
-      if (this.currentSelection.key === ALL_ITEM_KEY) {
-        return this.items;
+      if (this.currentSelection === ALL_ITEM_KEY) {
+        return this.feed;
       }
-      return this.items.filter(item => item.itemId === this.currentSelection.key);
+      return this.feed.filter(item => item.itemId === this.currentSelection);
     },
     switchLabel() {
       return `Live Search ${this.liveSearchSwitch ? 'On' : 'Off'}`;
     },
+    options() {
+      return [
+        {
+          key: 'all',
+          text: 'All items',
+        },
+        ...this._.map(this.trackedItems, (item, itemId) => {
+          return {
+            key: itemId,
+            text: item.name,
+          }
+        }),
+      ]
+    },
+    currentItemSelection() {
+      return this.options.find(item => item.key === this.currentSelection)
+    }
   },
   methods: {
+    ...mapMutations([
+      'removeFromFeed'
+    ]),
     onMessageClick(message) {
       navigator.clipboard.writeText(message);
       this.snackbar = true;
     },
-    removeItem(id) {
-      this.items = this._.filter(this.items, item => item.listingId !== id);
+    removeItem(listingId) {
+      this.removeFromFeed(listingId)
     }
   },
 };

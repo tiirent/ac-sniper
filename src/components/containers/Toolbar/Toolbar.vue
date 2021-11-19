@@ -24,9 +24,9 @@
           color="grey white-70"
           dark
         >
-          <v-tab key="feed" to="feed" class="ml-1 px-1"> Alert Feed </v-tab>
-          <v-tab key="config" to="config" class="px-3">
-            Tracked Items
+          <v-tab key="feed" to="feed" class="ml-1 px-1"> Feed </v-tab>
+          <v-tab key="items" to="items" class="px-3">
+            Items
           </v-tab>
           <v-tabs-items v-model="activeTab" @change="updateRouter($event)" />
         </v-tabs>
