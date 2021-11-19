@@ -28,7 +28,6 @@ export default {
   }),
   mounted() {
     this.pushToFeed({ test: "test" });
-    this.addTrackedItem("zJRO6DgI4", "test item name");
     Manager.checkItem("uuid");
     console.log(this.$store.state.feed);
   },
