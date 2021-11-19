@@ -81,16 +81,9 @@ export default {
   computed: {
     ...mapGetters([
       'trackedItems',
-      'trackedItemsHash',
     ]),
   },
-  watch: {
-    trackedItemsHash: {
-      handler() {
-        this.$forceUpdate();
-      },
-    },
-  },
+
   mounted() {
   },
   methods: {
@@ -109,6 +102,7 @@ export default {
       this.editTrackedItem(item);
     },
     edit(id) {
+      this.$refs.addItemDialog.id = id;
       this.$refs.addItemDialog.name = this.trackedItems[id].name;
       this.$refs.addItemDialog.searchUrl = this.trackedItems[id].url;
       this.$refs.addItemDialog.dialogModel = true;
